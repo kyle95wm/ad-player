@@ -163,7 +163,21 @@ button {
 .ctrl-main.is-playing .icon-play { display: none; }
 .ctrl-main.is-playing .icon-pause { display: block; }
 
-.volume { max-width: 22rem; }
+.volume { max-width: 30rem; }
+.volume-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+}
+.volume-row input[type="range"] { flex: 1 1 10rem; width: auto; }
+.volume-value {
+  min-width: 4ch;
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.volume-reset { padding: .4rem .85rem; }
 
 .warning {
   margin-top: 1rem;

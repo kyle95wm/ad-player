@@ -57,7 +57,13 @@
 
       <div class="volume">
         <label for="volume">Volume</label>
-        <input type="range" id="volume" min="0" max="100" step="5" value="80" aria-valuetext="80 percent">
+        <div class="volume-row">
+          <input type="range" id="volume" min="0" max="100" step="5" value="80" aria-valuetext="80 percent">
+          <!-- Visual only: the slider already announces its value. -->
+          <span class="volume-value" id="volume-value" aria-hidden="true">80%</span>
+          <button type="button" id="btn-volume-reset" class="action action-quiet volume-reset"
+                  data-tip="Set the volume back to 80%">Reset volume</button>
+        </div>
       </div>
 
       <div id="dsp-warning" class="warning" hidden></div>

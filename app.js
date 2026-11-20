@@ -15,6 +15,8 @@ const els = {
   fwd: $('btn-fwd'),
   next: $('btn-next'),
   volume: $('volume'),
+  volumeValue: $('volume-value'),
+  volumeReset: $('btn-volume-reset'),
   status: $('status'),
   dspWarning: $('dsp-warning'),
   addFiles: $('btn-add-files'),
@@ -28,6 +30,7 @@ const els = {
 };
 
 const SKIP_SECONDS = 10;
+const DEFAULT_VOLUME = 80;
 const RESTART_THRESHOLD = 3; // "Previous" restarts the track if past this point
 
 /** @type {{id:number, file:File, title:string}[]} */
@@ -564,11 +567,22 @@ els.seek.addEventListener('blur', () => { seeking = false; });
 function applyVolume() {
   const v = Number(els.volume.value);
   els.volume.setAttribute('aria-valuetext', `${v} percent`);
+  els.volumeValue.textContent = `${v}%`;
   if (volumeNode) volumeNode.gain.setTargetAtTime(volumeToGain(v), ctx.currentTime, 0.02);
   else audio.volume = volumeToGain(v);
   try { localStorage.setItem('ad-player-volume', String(v)); } catch { /* storage unavailable */ }
 }
 els.volume.addEventListener('input', applyVolume);
+
+els.volumeReset.addEventListener('click', () => {
+  if (Number(els.volume.value) === DEFAULT_VOLUME) {
+    announce(`Volume is already at the default of ${DEFAULT_VOLUME} percent.`);
+    return;
+  }
+  els.volume.value = String(DEFAULT_VOLUME);
+  applyVolume();
+  announce(`Volume reset to ${DEFAULT_VOLUME} percent.`);
+});
 
 els.addFiles.addEventListener('click', () => { wakeAudio(); els.fileInput.click(); });
 els.addFolder.addEventListener('click', () => { wakeAudio(); els.folderInput.click(); });
