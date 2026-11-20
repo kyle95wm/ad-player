@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An accessible audio player with a play queue, M3U playlist support and real-time compression and limiting.">
+  <meta name="color-scheme" content="light dark">
+  <title>AD Player</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 2l10 6-10 6z' fill='%232f6fdd'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#controls">Skip to playback controls</a>
+
+  <header class="site-header">
+    <h1>AD Player</h1>
+  </header>
+
+  <main>
+    <section class="player" aria-labelledby="now-heading">
+      <h2 id="now-heading">Now playing</h2>
+      <p class="now-title" id="now-title">Nothing playing</p>
+      <p class="now-meta" id="now-meta">Add audio files or a playlist to get started.</p>
+
+      <div class="seek">
+        <label for="seek">Position</label>
+        <input type="range" id="seek" min="0" max="0" step="1" value="0"
+               aria-valuetext="No track loaded" aria-describedby="seek-help">
+        <p class="time" aria-hidden="true"><span id="time-current">0:00</span> / <span id="time-total">0:00</span></p>
+        <p id="seek-help" class="visually-hidden">Arrow keys move 5 seconds, Page Up and Page Down move 30 seconds.</p>
+      </div>
+
+      <div class="controls" id="controls" role="group" aria-label="Playback controls" tabindex="-1">
+        <button type="button" id="btn-prev" data-tip="Go to the previous track, or restart this one if it has played for more than 3 seconds" class="ctrl">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+          <span>Previous track</span>
+        </button>
+        <button type="button" id="btn-back" data-tip="Rewind 10 seconds" class="ctrl">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M11 6v12L2.5 12zM21 6v12l-8.5-6z"/></svg>
+          <span>Back 10 seconds</span>
+        </button>
+        <button type="button" id="btn-play" data-tip="Play" class="ctrl ctrl-main">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" class="icon-play"><path d="M7 4v16l13-8z"/></svg>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" class="icon-pause"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          <span id="btn-play-label">Play</span>
+        </button>
+        <button type="button" id="btn-fwd" data-tip="Skip ahead 10 seconds" class="ctrl">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M3 6v12l8.5-6zM13 6v12l8.5-6z"/></svg>
+          <span>Forward 10 seconds</span>
+        </button>
+        <button type="button" id="btn-next" data-tip="Go to the next track" class="ctrl">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+          <span>Next track</span>
+        </button>
+      </div>
+
+      <div class="volume">
+        <label for="volume">Volume</label>
+        <input type="range" id="volume" min="0" max="100" step="5" value="80" aria-valuetext="80 percent">
+      </div>
+
+      <div id="dsp-warning" class="warning" hidden></div>
+
+      <p id="status" class="status" role="status"></p>
+    </section>
+
+    <section class="queue" aria-labelledby="queue-heading">
+      <h2 id="queue-heading">Queue <span id="queue-count" class="queue-count"></span></h2>
+
+      <div class="queue-actions">
+        <button type="button" id="btn-add-files" data-tip="Choose audio files, or an M3U playlist together with its audio files" class="action">Add files</button>
+        <button type="button" id="btn-add-folder" data-tip="Choose a folder of audio files, with or without an M3U playlist" class="action">Add folder</button>
+        <button type="button" id="btn-clear" data-tip="Stop playback and remove every track from the queue" class="action action-quiet">Clear queue</button>
+      </div>
+      <input type="file" id="file-input" multiple hidden
+             accept="audio/*,.mp3,.m4a,.m4b,.aac,.wav,.flac,.ogg,.oga,.opus,.webm,.weba,.aif,.aiff,.m3u,.m3u8">
+      <input type="file" id="folder-input" webkitdirectory multiple hidden>
+
+      <p class="hint">
+        To open an M3U playlist, select it together with the audio files it lists,
+        or add the folder that contains them. You can also drag files onto this page.
+      </p>
+
+      <p id="queue-empty" class="queue-empty">The queue is empty.</p>
+      <ol id="queue-list" class="queue-list" aria-labelledby="queue-heading"></ol>
+    </section>
+  </main>
+</body>
+</html>
