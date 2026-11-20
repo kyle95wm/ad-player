@@ -49,10 +49,11 @@ Core requirements:
 |---|---|---|
 | `index.html` | ~96 | Page structure, landmarks, all static controls. Hidden `<input type=file>` elements for files and folders (`webkitdirectory`). |
 | `style.css` | ~314 | Colour tokens on `:root` with a dark-mode override, focus styles, responsive layout, forced-colors and reduced-motion rules, tooltip styles. |
-| `app.js` | ~645 | Player: audio graph, queue state, rendering, controls, announcements, Media Session, volume. |
+| `app.js` | ~650 | Player: audio graph, queue state, rendering, controls, announcements, Media Session, volume. |
 | `playlist.js` | ~155 | Sorting picked files into audio and playlists, M3U parsing, matching playlist entries to picked files. |
 | `dsp-processor.js` | ~250 | `AudioWorkletProcessor` named `dynamics-processor`, wrapping `FixedDSP`: a port of Plezy's FFmpeg compressor and limiter. LGPL-2.1-or-later (derived from FFmpeg). |
 | `tooltip.js` | ~115 | One shared tooltip element for any element with `data-tip`. |
+| `sw.js` | ~80 | Service worker for offline use. Saves the page's own files on install, then serves network-first with a cache fallback. Registered at the end of `app.js`. |
 | `README.md` | | User-facing documentation. |
 | `tests/compare-dsp.mjs` | | Renders identical PCM through FFmpeg, the reference C++ and the worklet, and compares them. Writes `tests/dsp-comparison-results.json`. |
 | `tests/render-reference.cpp` | | Command-line driver for the reference `AndroidDSP.h`. |
@@ -261,13 +262,23 @@ includes the C integer division in the limiter's `pdelta`, the
     through `DataTransfer`. Checked: queue, M3U matching (including the
     report), auto-advance, error skip, move/remove focus handling, the
     seek-slider keys, tooltips (hover, focus, Escape), and volume reset.
+- **Offline support** (20 November 2026, headless Chromium driven over CDP,
+  local server):
+  - The first visit registered the worker, controlled the page and saved all
+    seven entries.
+  - With the server stopped, reloading and navigating to
+    `index.html?x=1` opened the full player with no DSP warning, and an
+    `OfflineAudioContext` loaded `dsp-processor.js` from the saved copy and
+    rendered a tone limited to −3.000 dBFS.
+  - With the server back, a reload fetched from the network again.
 - **Not verified:**
   - real screen readers (NVDA, JAWS, VoiceOver, TalkBack);
   - Safari and Firefox, including their AudioWorklet output and multichannel
     decoding;
   - iOS and Android;
   - real multichannel output devices;
-  - listening comparisons against Plezy on Android.
+  - listening comparisons against Plezy on Android;
+  - offline use in Safari, Firefox, iOS and Android, and on the live site.
 
 ## Known limitations and areas worth checking
 
@@ -290,6 +301,29 @@ includes the C integer division in the limiter's `pdelta`, the
   This is fine for hundreds of tracks but hasn't been tested at thousands.
 - **Track titles:** they come from `#EXTINF` or the file name. ID3 and other
   metadata tags aren't read.
+- **Offline fallback on slow networks:** if some requests time out (5 s) and
+  others don't, one page load could mix saved and new files just after a
+  deploy. A normal reload fixes it.
+- **Browser pane:** the desktop app's browser pane refuses service worker
+  registration, so offline support can't be tested there (the player still
+  works; it only logs a warning).
+
+## Offline support (`sw.js`)
+
+- Registered from `app.js` (skipped on `file://`; failure only logs a
+  `console.warn`). Scope is the player's folder (`/ad-player/` on Pages).
+- **Install:** pre-caches the `FILES` list (`./`, `index.html`, `style.css`,
+  `app.js`, `playlist.js`, `tooltip.js`, `dsp-processor.js`) into cache
+  `ad-player-v1`, fetched with `cache: 'reload'`, then `skipWaiting()`.
+- **Activate:** deletes other `ad-player-*` caches, then `clients.claim()`.
+- **Fetch:** same-origin GETs only. Network first, and every OK response
+  refreshes the saved copy. The saved copy is served only when the network
+  fails or takes longer than 5 s (`NETWORK_TIMEOUT_MS`). Offline navigations
+  to any address in scope fall back to the saved `./`.
+- Audio files are played from `blob:` object URLs, which never pass through
+  the service worker, so nothing the user opens is cached.
+- **When adding, renaming or removing a file the page loads, update `FILES`
+  in `sw.js`.** Bump `CACHE` only if old saved copies must be thrown away.
 
 ## Conventions for changes
 

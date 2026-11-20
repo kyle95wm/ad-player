@@ -18,6 +18,8 @@ Live site: https://kyle95wm.github.io/ad-player/
 - Hardware media keys, headset buttons and lock-screen controls through the
   Media Session API.
 - Volume setting remembered between visits.
+- Works offline. After your first visit, the player opens with no connection
+  (see below).
 
 ## Audio processing
 
@@ -184,6 +186,21 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000.
 
+## Offline use
+
+On your first visit, the browser saves the player's own files using a service
+worker (`sw.js`). After that, the player opens and processes audio with no
+connection. Your audio files are never uploaded or saved by the player: they
+are always read straight from your device.
+
+When you're online, the player always loads from the network first, so updates
+arrive as normal. It falls back to the saved copy only when the network fails
+or takes longer than 5 seconds.
+
+Offline support needs the page to be served over http(s). Service workers
+aren't supported when you open `index.html` from a `file://` address. In
+private browsing, the saved copy may be discarded when the window closes.
+
 ## Publishing on GitHub Pages
 
 No build step is needed.
@@ -201,5 +218,6 @@ No build step is needed.
 - `app.js`: player, queue, controls and announcements
 - `playlist.js`: file sorting and M3U parsing and matching
 - `tooltip.js`: tooltips for buttons
+- `sw.js`: service worker that saves the player's files for offline use
 - `dsp-processor.js`: compressor and limiter AudioWorklet (LGPL-2.1-or-later, derived from FFmpeg)
 - `tests/`: DSP verification tools (not part of the deployed player)

@@ -643,3 +643,9 @@ applyVolume();
 updatePlayButton();
 updateNowPlaying();
 renderQueue();
+
+// Save the page's files so the player opens with no connection (see sw.js).
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register(new URL('./sw.js', import.meta.url))
+    .catch((err) => console.warn('[AD Player] Offline support unavailable:', err));
+}
