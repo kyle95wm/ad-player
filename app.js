@@ -70,10 +70,23 @@ function setUpAudioGraph() {
   }
   ctx.audioWorklet.addModule(new URL('./dsp-processor.js', import.meta.url))
     .then(() => {
+      // channelCountMode 'max' passes every channel of the track to the DSP
+      // without up- or down-mixing. With no outputChannelCount, the output
+      // follows the input's channel count.
       const dsp = new AudioWorkletNode(ctx, 'dynamics-processor', {
         numberOfInputs: 1,
         numberOfOutputs: 1,
+        channelCountMode: 'max',
+        channelInterpretation: 'speakers',
       });
+      dsp.port.onmessage = (e) => {
+        const d = e.data;
+        if (d && d.type === 'latency') {
+          console.info(`[AD Player] DSP: ${d.channels} channel(s) at ${d.sampleRate} Hz, ` +
+            `delay ${d.samples} samples (${(d.samples / d.sampleRate * 1000).toFixed(3)} ms). ` +
+            `Output device: ${ctx.destination.channelCount} channel(s).`);
+        }
+      };
       dsp.onprocessorerror = () => {
         source.disconnect();
         source.connect(volumeNode);

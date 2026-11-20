@@ -1,0 +1,3928 @@
+{
+ "generated": "2026-11-20T02:03:31.096Z",
+ "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+ "node": "v22.17.0",
+ "chain": "acompressor=threshold=-34dB:ratio=4:knee=6dB:attack=30:release=300:makeup=15dB:link=maximum,alimiter=limit=-3dB:attack=1:release=60:level=false",
+ "worst": {
+  "ffmpeg": 0,
+  "reference": 0
+ },
+ "results": [
+  {
+   "rate": 44100,
+   "channels": 1,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.5374303460121155,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 1,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 1,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 1,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 1,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 1,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1587600
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.5374303460121155,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 882000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 529200
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 705600
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 176400
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 44100,
+   "channels": 2,
+   "signal": "speech+music",
+   "seconds": 10.76,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 949368
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 864000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.53798508644104,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 288000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 96000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 240000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 1,
+   "signal": "speech+music",
+   "seconds": 10.76,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 516663
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.53798508644104,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 192000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 480000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 2,
+   "signal": "speech+music",
+   "seconds": 10.76,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1033326
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 6,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 5184000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.53798508644104,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 6,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2880000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 6,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1728000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 6,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 6,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 576000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 6,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1440000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 8,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 6912000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.53798508644104,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 8,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 8,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 8,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 8,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 48000,
+   "channels": 8,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 96000,
+   "channels": 2,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3456000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.5403264760971069,
+   "withinCeiling": true
+  },
+  {
+   "rate": 96000,
+   "channels": 2,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 96000,
+   "channels": 2,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1152000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 96000,
+   "channels": 2,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1536000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 96000,
+   "channels": 2,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 384000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 96000,
+   "channels": 2,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 960000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 22050,
+   "channels": 2,
+   "signal": "tones",
+   "seconds": 18,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 793800
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.5345730781555176,
+   "withinCeiling": true
+  },
+  {
+   "rate": 22050,
+   "channels": 2,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 441000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 22050,
+   "channels": 2,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 264600
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 22050,
+   "channels": 2,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 352800
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 22050,
+   "channels": 2,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 88200
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 22050,
+   "channels": 2,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "1": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 220500
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 192000,
+   "channels": 2,
+   "signal": "steps",
+   "seconds": 10,
+   "blocks": {
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3840000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 192000,
+   "channels": 2,
+   "signal": "transients",
+   "seconds": 6,
+   "blocks": {
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 2304000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 192000,
+   "channels": 2,
+   "signal": "unequal",
+   "seconds": 8,
+   "blocks": {
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 3072000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  },
+  {
+   "rate": 192000,
+   "channels": 2,
+   "signal": "silence",
+   "seconds": 2,
+   "blocks": {
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 768000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0,
+   "withinCeiling": true
+  },
+  {
+   "rate": 192000,
+   "channels": 2,
+   "signal": "programme",
+   "seconds": 5,
+   "blocks": {
+    "127": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "128": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "512": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    },
+    "4096": {
+     "vsFFmpeg": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     },
+     "vsReference": {
+      "maxErr": 0,
+      "diffs": 0,
+      "compared": 1920000
+     }
+    }
+   },
+   "blockIndependent": true,
+   "outputPeak": 0.7079457640647888,
+   "withinCeiling": true
+  }
+ ]
+}
