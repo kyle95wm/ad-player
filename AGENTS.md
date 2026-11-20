@@ -10,7 +10,7 @@ with a narrator describing what's on screen between the dialogue.
 - Live: https://kyle95wm.github.io/ad-player/
 
 Its main users are people who use screen readers. The point of the app is its
-always-on **night mode**: easier listening in loud environments and at night,
+**night mode** (on by default, with an on/off switch): easier listening in loud environments and at night,
 by taming action scenes (explosions, gunfire, loud music) while keeping
 dialogue and description audible. Night mode is Plezy's fixed FFmpeg compressor
 and limiter chain, ported to an AudioWorklet and verified bit-identical to
@@ -24,7 +24,8 @@ Core requirements:
    Ogg Vorbis, Opus and WebM. There is no ffmpeg/WASM fallback, by design.
 2. Opens several files at once, a folder, or an M3U/M3U8 playlist, into a play
    queue.
-3. Night mode: processes audio in real time exactly like Plezy's fixed chain. The settings
+3. Night mode: processes audio in real time exactly like Plezy's fixed chain.
+   The only control is an on/off switch, on by default. The settings themselves
    are not user-adjustable, and there is no UI for them, by design:
    `acompressor=threshold=-34dB:ratio=4:knee=6dB:attack=30:release=300:makeup=15dB:link=maximum,alimiter=limit=-3dB:attack=1:release=60:level=false`
    - Compressor: threshold −34 dBFS, ratio 4:1, knee 6 dB, attack 30 ms,
@@ -54,9 +55,9 @@ Core requirements:
 
 | File | Lines | Role |
 |---|---|---|
-| `index.html` | ~96 | Page structure, landmarks, all static controls. Hidden `<input type=file>` elements for files and folders (`webkitdirectory`). |
-| `style.css` | ~314 | Colour tokens on `:root` with a dark-mode override, focus styles, responsive layout, forced-colors and reduced-motion rules, tooltip styles. |
-| `app.js` | ~650 | Player: audio graph, queue state, rendering, controls, announcements, Media Session, volume. |
+| `index.html` | ~108 | Page structure, landmarks, all static controls, including the night mode switch. Hidden `<input type=file>` elements for files and folders (`webkitdirectory`). |
+| `style.css` | ~372 | Colour tokens on `:root` with a dark-mode override, focus styles, responsive layout, the night mode switch, forced-colors and reduced-motion rules, tooltip styles. |
+| `app.js` | ~705 | Player: audio graph, night mode switch, queue state, rendering, controls, announcements, Media Session, volume. |
 | `playlist.js` | ~155 | Sorting picked files into audio and playlists, M3U parsing, matching playlist entries to picked files. |
 | `dsp-processor.js` | ~250 | `AudioWorkletProcessor` named `dynamics-processor`, wrapping `FixedDSP`: a port of Plezy's FFmpeg compressor and limiter. LGPL-2.1-or-later (derived from FFmpeg). |
 | `tooltip.js` | ~115 | One shared tooltip element for any element with `data-tip`. |
@@ -71,10 +72,23 @@ Core requirements:
 ```
 HTMLAudioElement (object URL of picked File)
   -> MediaElementAudioSourceNode
-  -> AudioWorkletNode('dynamics-processor')   [compressor -> makeup -> limiter]
-  -> GainNode (user volume, post-limiter)
+       -> AudioWorkletNode('dynamics-processor') -> GainNode nightNode --+
+       -> GainNode dryNode -----------------------------------------------+
+  -> GainNode volumeNode (user volume, post-limiter)
   -> destination
 ```
+
+- **Night mode switch** (`#night-mode`): on → `nightNode` 1, `dryNode` 0; off →
+  the reverse. `fadeGain()` ramps both linearly over `NIGHT_FADE_SECONDS`
+  (50 ms) so switching doesn't click. The worklet keeps running while night
+  mode is off, so its envelope is already tracking when it's turned back on.
+  The DSP itself is untouched: there is no bypass inside the worklet.
+- `nightStatus` is `'loading'`, `'ready'` or `'unavailable'`. While loading,
+  `dryNode` is 0 if the switch is on, so nothing plays unprocessed before the
+  worklet is ready. `nightNode` is created when the worklet loads, at the
+  switch's current setting.
+- Saved in `localStorage` under `ad-player-night-mode` (`'on'`/`'off'`). Missing
+  or unreadable means on.
 
 - The worklet node uses `channelCountMode: 'max'` and
   `channelInterpretation: 'speakers'`, with no `outputChannelCount`, so every
@@ -84,9 +98,11 @@ HTMLAudioElement (object URL of picked File)
 - The AudioContext is created at page load, so it starts suspended. It is
   resumed by `wakeAudio()`, which is called synchronously in every user-gesture
   handler (play, skip, add files, queue clicks, drop).
-- If the worklet fails to load, or isn't supported, the source connects straight
-  to the volume node. A visible warning is shown and announced. On `file://` the
-  warning says to serve the page over http.
+- If the worklet fails to load, isn't supported, or errors later,
+  `nightUnavailable()` fades `dryNode` to 1, sets the switch off and shows and
+  announces a warning (on `file://` it says to serve the page over http). The
+  saved preference isn't changed. Turning the switch on then announces that
+  night mode isn't available and leaves it off.
 - Volume: slider 0–100, step 5, default `DEFAULT_VOLUME = 100`. Gain = (v/100)²,
   applied after the limiter so the volume setting doesn't change how hard the
   compressor works. It is saved in `localStorage` under `ad-player-volume`, with
@@ -218,6 +234,18 @@ includes the C integer division in the limiter's `pdelta`, the
     that it's already at the default.
   - It doesn't use `<output>`, which some screen readers treat as a live region
     and would announce twice.
+- **Night mode switch:**
+  - A native `<input type=checkbox role=switch>` inside its `<label>`, so screen
+    readers say "Night mode, switch, on". The state change is spoken natively,
+    so it isn't also announced through `announce()`.
+  - The checkbox is transparent and covers the whole label, so clicks, the
+    hover tooltip and focus all land on it. The focus ring is drawn on the
+    track (`input:focus-visible ~ .switch-track`).
+  - The visible "On"/"Off" text (`#night-state`) is `aria-hidden`. The line
+    below (`#night-help`) is its `aria-describedby`.
+  - Forced-colors rules use `ButtonText`/`Highlight` so the state stays visible.
+  - The browser pane's `read_page` tool doesn't list it (it skips transparent
+    elements); it's still in the accessibility tree.
 - **Queue items:**
   - Each item is an `<li>` with a title button plus ↑ ↓ ✕ buttons whose
     `aria-label` names the track ("Move X up", "Remove X").
@@ -278,6 +306,14 @@ includes the C integer division in the limiter's `pdelta`, the
     `OfflineAudioContext` loaded `dsp-processor.js` from the saved copy and
     rendered a tone limited to −3.000 dBFS.
   - With the server back, a reload fetched from the network again.
+- **Night mode switch** (20 November 2026, browser pane, output measured with
+  an `AnalyserNode` tapped before `destination`):
+  - On (the default): a −40 dBFS tone came out at −25.0 dBFS. Off: −40.0 dBFS.
+  - A 0 dBFS tone: 0 dBFS off, about −9.8 dBFS on.
+  - Clicking, and Tab then Space, both toggle it; the focus ring and tooltip
+    show; the choice is saved and restored after a reload.
+  - With `audioWorklet` removed: the switch starts off, the warning shows, and
+    turning it on announces that it isn't available.
 - **Not verified:**
   - real screen readers (NVDA, JAWS, VoiceOver, TalkBack);
   - Safari and Firefox, including their AudioWorklet output and multichannel

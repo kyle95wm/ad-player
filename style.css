@@ -163,6 +163,58 @@ button {
 .ctrl-main.is-playing .icon-play { display: none; }
 .ctrl-main.is-playing .icon-pause { display: block; }
 
+/* Night mode switch. The real checkbox covers the whole label (invisibly), so
+   clicks, hover tooltips and focus all land on it. */
+.night { margin-bottom: 1.25rem; }
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 44px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.switch-track {
+  position: relative;
+  flex: none;
+  width: 3.25rem;
+  height: 1.85rem;
+  border: 2px solid var(--muted);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: background-color .15s, border-color .15s;
+}
+.switch-thumb {
+  position: absolute;
+  top: 50%;
+  left: .2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--muted);
+  transform: translateY(-50%);
+  transition: transform .15s, background-color .15s;
+}
+.switch input:checked ~ .switch-track { background: var(--accent); border-color: var(--accent); }
+.switch input:checked ~ .switch-track .switch-thumb {
+  background: var(--accent-text);
+  transform: translate(1.35rem, -50%);
+}
+.switch input:focus-visible { outline: none; }
+.switch input:focus-visible ~ .switch-track { outline: 3px solid var(--focus); outline-offset: 3px; }
+.switch-state { min-width: 3ch; font-weight: 400; color: var(--muted); }
+.night-help { margin: .25rem 0 0; color: var(--muted); font-size: .95rem; }
+
 .volume { max-width: 30rem; }
 .volume-row {
   display: flex;
@@ -274,6 +326,12 @@ body.is-dragging main { outline: 3px dashed var(--accent); outline-offset: 6px; 
 @media (forced-colors: active) {
   .ctrl, .action, .queue-tool { border: 1px solid ButtonText; }
   .queue-item[aria-current="true"] { outline: 2px solid Highlight; }
+  .switch-track, .switch-thumb { forced-color-adjust: none; }
+  .switch-track { border-color: ButtonText; background: Canvas; }
+  .switch-thumb { background: ButtonText; }
+  .switch input:checked ~ .switch-track { border-color: Highlight; background: Highlight; }
+  .switch input:checked ~ .switch-track .switch-thumb { background: HighlightText; }
+  .switch input:focus-visible ~ .switch-track { outline-color: Highlight; }
 }
 
 /* Tooltips (see tooltip.js) */

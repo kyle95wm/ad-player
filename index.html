@@ -55,6 +55,18 @@
         </button>
       </div>
 
+      <div class="night">
+        <label class="switch" for="night-mode">
+          <input type="checkbox" role="switch" id="night-mode" checked aria-describedby="night-help"
+                 data-tip="Turn night mode on or off">
+          <span class="switch-label">Night mode</span>
+          <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+          <!-- Visual only: the switch already announces whether it's on. -->
+          <span class="switch-state" id="night-state" aria-hidden="true">On</span>
+        </label>
+        <p id="night-help" class="night-help">Tames loud action scenes and lifts quiet dialogue and description.</p>
+      </div>
+
       <div class="volume">
         <label for="volume">Volume</label>
         <div class="volume-row">

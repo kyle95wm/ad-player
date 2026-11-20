@@ -17,6 +17,8 @@ const els = {
   volume: $('volume'),
   volumeValue: $('volume-value'),
   volumeReset: $('btn-volume-reset'),
+  nightMode: $('night-mode'),
+  nightState: $('night-state'),
   status: $('status'),
   dspWarning: $('dsp-warning'),
   addFiles: $('btn-add-files'),
@@ -45,16 +47,24 @@ const audio = new Audio();
 audio.preload = 'auto';
 
 // ---------------------------------------------------------------------------
-// Audio graph: <audio> -> compressor/limiter worklet -> volume -> speakers
+// Audio graph:
+//   <audio> -> night mode worklet (compressor/limiter) -> nightNode -+
+//          \-------------------------------------------> dryNode ---+-> volume -> speakers
+// Night mode on: nightNode gain 1, dryNode 0. Off: the reverse. The worklet
+// keeps running while night mode is off, so turning it back on is seamless.
 // ---------------------------------------------------------------------------
 
 let ctx = null;
 let volumeNode = null;
+let nightNode = null;
+let dryNode = null;
+let nightStatus = 'loading'; // 'loading' | 'ready' | 'unavailable'
+const NIGHT_FADE_SECONDS = 0.05; // short crossfade, so switching doesn't click
 
 function setUpAudioGraph() {
   const AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) {
-    showDspWarning('This browser does not support Web Audio, so audio plays without compression or limiting.');
+    nightUnavailable('This browser doesn\'t support Web Audio, so night mode isn\'t available and audio plays without it.');
     return;
   }
   ctx = new AC({ latencyHint: 'playback' });
@@ -62,10 +72,14 @@ function setUpAudioGraph() {
   volumeNode = ctx.createGain();
   volumeNode.gain.value = volumeToGain(Number(els.volume.value));
   volumeNode.connect(ctx.destination);
+  // Until the worklet is ready, the dry path is silent if night mode is on,
+  // so nothing loud slips through unprocessed.
+  dryNode = ctx.createGain();
+  dryNode.gain.value = els.nightMode.checked ? 0 : 1;
+  source.connect(dryNode).connect(volumeNode);
 
   if (!ctx.audioWorklet) {
-    source.connect(volumeNode);
-    showDspWarning('This browser does not support AudioWorklet, so audio plays without compression or limiting. Try an up-to-date Chrome, Edge, Firefox or Safari.');
+    nightUnavailable('This browser doesn\'t support AudioWorklet, so night mode isn\'t available and audio plays without it. Try an up-to-date Chrome, Edge, Firefox or Safari.');
     return;
   }
   ctx.audioWorklet.addModule(new URL('./dsp-processor.js', import.meta.url))
@@ -88,26 +102,61 @@ function setUpAudioGraph() {
         }
       };
       dsp.onprocessorerror = () => {
-        source.disconnect();
-        source.connect(volumeNode);
-        showDspWarning('The audio processor stopped working, so audio now plays without compression or limiting. Reload the page to try again.');
+        dsp.disconnect();
+        nightUnavailable('Night mode stopped working, so audio now plays without it. Reload the page to try again.');
       };
-      source.connect(dsp).connect(volumeNode);
+      nightNode = ctx.createGain();
+      nightNode.gain.value = els.nightMode.checked ? 1 : 0;
+      source.connect(dsp).connect(nightNode).connect(volumeNode);
+      nightStatus = 'ready';
     })
     .catch((err) => {
       console.error(err);
-      source.connect(volumeNode);
-      showDspWarning(location.protocol === 'file:'
-        ? 'Audio processing can\'t load when the page is opened as a local file, so audio plays without compression or limiting. Serve the folder over http (see the README) or use the GitHub Pages site.'
-        : 'Audio processing failed to load, so audio plays without compression or limiting.');
+      nightUnavailable(location.protocol === 'file:'
+        ? 'Night mode can\'t load when the page is opened as a local file, so audio plays without it. Serve the folder over http (see the README) or use the GitHub Pages site.'
+        : 'Night mode failed to load, so audio plays without it.');
     });
 }
 
-function showDspWarning(text) {
+// Night mode can't run: play the audio unprocessed and show the switch as off.
+// The saved preference is kept, so it comes back on where night mode works.
+function nightUnavailable(text) {
+  nightStatus = 'unavailable';
+  if (dryNode) fadeGain(dryNode, 1);
+  if (nightNode) fadeGain(nightNode, 0);
+  els.nightMode.checked = false;
+  showNightState();
   els.dspWarning.textContent = text;
   els.dspWarning.hidden = false;
   announce(text);
 }
+
+function fadeGain(node, value) {
+  const t = ctx.currentTime;
+  node.gain.cancelScheduledValues(t);
+  node.gain.setValueAtTime(node.gain.value, t);
+  node.gain.linearRampToValueAtTime(value, t + NIGHT_FADE_SECONDS);
+}
+
+function showNightState() {
+  els.nightState.textContent = els.nightMode.checked ? 'On' : 'Off';
+}
+
+function applyNightMode() {
+  const on = els.nightMode.checked;
+  if (on && nightStatus === 'unavailable') {
+    els.nightMode.checked = false;
+    announce('Night mode isn\'t available in this browser, so audio plays without it.');
+    return;
+  }
+  showNightState();
+  try { localStorage.setItem('ad-player-night-mode', on ? 'on' : 'off'); } catch { /* storage unavailable */ }
+  // While the worklet is still loading, nightNode doesn't exist yet; it starts
+  // at the switch's setting when it's created.
+  if (dryNode) fadeGain(dryNode, on ? 0 : 1);
+  if (nightNode) fadeGain(nightNode, on ? 1 : 0);
+}
+els.nightMode.addEventListener('change', applyNightMode);
 
 // Must be called synchronously inside a user action for browsers to allow sound.
 function wakeAudio() {
@@ -637,6 +686,11 @@ try {
   const saved = localStorage.getItem('ad-player-volume');
   if (saved !== null && !Number.isNaN(Number(saved))) els.volume.value = saved;
 } catch { /* storage unavailable */ }
+try {
+  // Night mode is on unless this browser saved it as off.
+  els.nightMode.checked = localStorage.getItem('ad-player-night-mode') !== 'off';
+} catch { /* storage unavailable */ }
+showNightState();
 
 setUpAudioGraph();
 applyVolume();

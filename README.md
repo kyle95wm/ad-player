@@ -5,7 +5,7 @@ and TV programmes, where a narrator describes what happens on screen between
 the lines of dialogue. It's built for people who use screen readers, and works
 in any modern browser.
 
-Everything it plays goes through a built-in **night mode**. Night mode evens
+Its main feature is **night mode**, which is on by default. Night mode evens
 out the volume: loud action scenes, explosions and music are brought down, and
 quiet dialogue and description are brought up. You can follow the story in a
 noisy place, or late at night at a low volume, without reaching for the volume
@@ -25,14 +25,19 @@ Live site: https://kyle95wm.github.io/ad-player/
   forward 10 seconds and next track.
 - Hardware media keys, headset buttons and lock-screen controls through the
   Media Session API.
+- A **Night mode** switch, on by default. Your choice is remembered.
 - Volume setting remembered between visits.
 - Works offline. After your first visit, the player opens with no connection
   (see below).
 
 ## Night mode (audio processing)
 
-Night mode is always on, and its settings are fixed, so there's nothing to set
-up. In practice:
+Night mode is on by default. Use the **Night mode** switch under the playback
+buttons to turn it off and hear the track as it is, and the player remembers
+your choice. The switch fades between the two over 50 ms, so it doesn't click.
+Night mode's own settings are fixed, so there's nothing else to set up.
+
+With night mode on:
 
 - Quiet passages, such as soft-spoken dialogue and description, are raised by
   up to 15 dB.
@@ -194,6 +199,10 @@ aren't in the playlist are skipped, and the player announces how many.
   button labels already say the same thing.
 - There are no single-key shortcuts that would clash with screen reader quick
   navigation. Use the media keys on your keyboard or headset instead.
+- The **Night mode** switch is a real checkbox with the switch role, so
+  screen readers say "Night mode, switch, on" (or off). It's described by the
+  line of text below it. If night mode can't run in your browser, the switch
+  stays off and says why when you try to turn it on.
 - Supports dark mode, Windows high contrast (forced colors) and reduced motion.
   Touch targets are at least 44 px.
 
