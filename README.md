@@ -1,7 +1,15 @@
 # AD Player
 
-An accessible web audio player with a play queue, M3U playlist support, and
-real-time compression and limiting on everything it plays.
+A player for audio description (AD) tracks: the audio-only versions of films
+and TV programmes, where a narrator describes what happens on screen between
+the lines of dialogue. It's built for people who use screen readers, and works
+in any modern browser.
+
+Everything it plays goes through a built-in **night mode**. Night mode evens
+out the volume: loud action scenes, explosions and music are brought down, and
+quiet dialogue and description are brought up. You can follow the story in a
+noisy place, or late at night at a low volume, without reaching for the volume
+control every time a scene changes.
 
 Live site: https://kyle95wm.github.io/ad-player/
 
@@ -21,7 +29,20 @@ Live site: https://kyle95wm.github.io/ad-player/
 - Works offline. After your first visit, the player opens with no connection
   (see below).
 
-## Audio processing
+## Night mode (audio processing)
+
+Night mode is always on, and its settings are fixed, so there's nothing to set
+up. In practice:
+
+- Quiet passages, such as soft-spoken dialogue and description, are raised by
+  up to 15 dB.
+- Loud passages, such as gunfire, explosions and swelling music, are pulled
+  down, so they end up not much louder than speech.
+- Sudden peaks are caught by a limiter, so nothing goes above −3 dBFS.
+- The volume slider works after night mode, so turning it down doesn't change
+  how much night mode evens things out.
+
+The rest of this section describes exactly how it works.
 
 All audio goes through an AudioWorklet (`dsp-processor.js`) that reproduces
 Plezy's fixed FFmpeg chain:

@@ -2,14 +2,21 @@
 
 ## What this is
 
-A static, client-side web audio player hosted on GitHub Pages.
+A static, client-side web player for audio description (AD) tracks, hosted on
+GitHub Pages. AD tracks are the audio-only versions of films and TV programmes,
+with a narrator describing what's on screen between the dialogue.
 
 - Repo: https://github.com/kyle95wm/ad-player (branch `main`, served from `/`)
 - Live: https://kyle95wm.github.io/ad-player/
 
-Its main users are people who use screen readers. All audio passes through
-Plezy's fixed FFmpeg compressor and limiter chain, ported to an AudioWorklet and
-verified bit-identical to FFmpeg.
+Its main users are people who use screen readers. The point of the app is its
+always-on **night mode**: easier listening in loud environments and at night,
+by taming action scenes (explosions, gunfire, loud music) while keeping
+dialogue and description audible. Night mode is Plezy's fixed FFmpeg compressor
+and limiter chain, ported to an AudioWorklet and verified bit-identical to
+FFmpeg. The compressor (with +15 dB makeup) lifts quiet speech and pulls down
+loud passages, and the limiter catches peaks at −3 dBFS. In user-facing text,
+call it "night mode"; in code and technical docs, "the DSP" is fine.
 
 Core requirements:
 
@@ -17,7 +24,7 @@ Core requirements:
    Ogg Vorbis, Opus and WebM. There is no ffmpeg/WASM fallback, by design.
 2. Opens several files at once, a folder, or an M3U/M3U8 playlist, into a play
    queue.
-3. Processes audio in real time exactly like Plezy's fixed chain. The settings
+3. Night mode: processes audio in real time exactly like Plezy's fixed chain. The settings
    are not user-adjustable, and there is no UI for them, by design:
    `acompressor=threshold=-34dB:ratio=4:knee=6dB:attack=30:release=300:makeup=15dB:link=maximum,alimiter=limit=-3dB:attack=1:release=60:level=false`
    - Compressor: threshold −34 dBFS, ratio 4:1, knee 6 dB, attack 30 ms,
