@@ -30,7 +30,7 @@ const els = {
 };
 
 const SKIP_SECONDS = 10;
-const DEFAULT_VOLUME = 80;
+const DEFAULT_VOLUME = 100;
 const RESTART_THRESHOLD = 3; // "Previous" restarts the track if past this point
 
 /** @type {{id:number, file:File, title:string}[]} */
