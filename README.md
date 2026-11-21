@@ -20,6 +20,10 @@ Live site: https://kyle95wm.github.io/ad-player/
 - Add several files at once, a whole folder, or drag files onto the page. They
   go to the end of the queue, and the first one starts playing straight away
   unless something is already playing.
+- If you drag files onto the page before clicking or pressing a key on it,
+  the browser won't let sound start yet (a drop from another app doesn't count
+  as using the page). The player tells you, and puts focus on Play so one key
+  press starts it. After that, drops start straight away.
 - Play queue with play, move up, move down and remove for each track.
 - M3U and M3U8 playlists, including `#EXTINF` titles (see below).
 - Large, labelled buttons for previous track, back 10 seconds, play/pause,

@@ -329,8 +329,17 @@ includes the C integer division in the limiter's `pdelta`, the
 
 ## Known limitations and areas worth checking
 
-- **Autoplay:** Safari may block autoplay after the file picker closes. The
-  player then announces "Press Play to start playback."
+- **Autoplay:** browsers only allow sound after a click or key press on the
+  page. A file dropped from Finder or Explorer isn't one, so a drop onto a page
+  nobody has used yet is refused (`NotAllowedError`); after any click or key
+  press, drops play straight away. Reproduced in headless Chromium with its
+  default autoplay policy (the browser pane is more lenient, so it doesn't
+  show this). `addFiles()` passes an `onBlocked` callback to
+  `startPlayback()`: it moves focus to Play and announces the add report plus
+  "X is ready. Your browser only plays sound after a click or key press on
+  this page, so press Play to start." One Enter then starts playback. Safari
+  may also block playback after the file picker closes; the same message
+  applies. Elsewhere a blocked start announces "Press Play to start playback."
 - **iOS:** the folder picker isn't available on iOS, so the "Add folder" button
   is hidden. iOS may also suspend the AudioContext in the background or when
   the screen locks.

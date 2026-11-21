@@ -223,13 +223,16 @@ function load(index) {
   renderQueue();
 }
 
-function startPlayback() {
+// onBlocked runs instead of the default message when the browser refuses to
+// start sound because there hasn't been a click or key press on the page yet.
+function startPlayback(onBlocked) {
   wakeAudio();
   const p = audio.play();
   if (p) {
     p.catch((err) => {
-      if (err.name === 'NotAllowedError') announce('Press Play to start playback.');
-      // Other failures surface through the audio element's error event.
+      if (err.name !== 'NotAllowedError') return; // other failures surface through the error event
+      if (onBlocked) onBlocked();
+      else announce('Press Play to start playback.');
     });
   }
 }
@@ -336,7 +339,16 @@ async function addFiles(fileList) {
 
   if (startNew) {
     load(firstNew);
-    startPlayback();
+    const title = queue[firstNew].title;
+    const addedText = parts.slice();
+    // Browsers only allow sound after a click or key press on the page. A file
+    // dropped from another app doesn't count, so a drop onto a page nobody has
+    // clicked yet is refused. Explain, and put focus on Play so one key press
+    // (or click) starts it.
+    startPlayback(() => {
+      els.play.focus();
+      announce([...addedText, `${title} is ready. Your browser only plays sound after a click or key press on this page, so press Play to start.`].join(' '));
+    });
     parts.push(`Now playing: ${queue[firstNew].title}. Track ${firstNew + 1} of ${queue.length}.`);
   } else if (tracks.length > 0) {
     parts.push(`${tracks.length === 1 ? 'It\'s' : 'They\'re'} at the end of the queue, after what's playing now.`);
