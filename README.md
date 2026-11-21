@@ -18,7 +18,8 @@ Live site: https://kyle95wm.github.io/ad-player/
 - Plays the formats your browser supports: MP3, AAC/M4A, WAV, FLAC, Ogg Vorbis,
   Opus and WebM (and AIFF/ALAC in Safari).
 - Add several files at once, a whole folder, or drag files onto the page. They
-  go to the end of the queue.
+  go to the end of the queue, and the first one starts playing straight away
+  unless something is already playing.
 - Play queue with play, move up, move down and remove for each track.
 - M3U and M3U8 playlists, including `#EXTINF` titles (see below).
 - Large, labelled buttons for previous track, back 10 seconds, play/pause,

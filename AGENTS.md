@@ -183,8 +183,12 @@ includes the C integer division in the limiter's `pdelta`, the
 - State in `app.js`: `queue` (array of `{id, file, title}`), `current` (index,
   −1 when none), and `currentUrl` (only the loaded track has an object URL; it
   is revoked when the track changes).
-- Adding files appends them to the queue. If the queue was empty, the first new
-  track starts playing.
+- Adding files appends them to the queue. If nothing is playing (empty queue,
+  paused, or finished), the first new track loads and starts, and the
+  announcement says "Now playing: X. Track N of M." If a track is playing, it
+  carries on, and the announcement says the new tracks are at the end of the
+  queue. `updateNowPlaying()` runs after every add so "Track N of M" stays
+  right.
 - `buildTracks()` in `playlist.js`:
   - With no playlist among the picked files, all audio files are queued, sorted
     by path with numeric collation.

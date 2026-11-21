@@ -313,9 +313,13 @@ async function addFiles(fileList) {
     return;
   }
   const { tracks, report } = result;
-  const wasEmpty = queue.length === 0;
+  const firstNew = queue.length;
+  // Start the new tracks unless something is already playing. Paused, finished
+  // or empty all count as not playing.
+  const startNew = tracks.length > 0 && (current === -1 || audio.paused);
   for (const t of tracks) queue.push({ id: nextId++, ...t });
   renderQueue();
+  updateNowPlaying(); // "Track 1 of N" changes when tracks are added
 
   const parts = [];
   parts.push(tracks.length === 0
@@ -330,10 +334,12 @@ async function addFiles(fileList) {
   if (report.unused) parts.push(`${report.unused} selected audio file${report.unused === 1 ? ' was' : 's were'} not in the playlist and ${report.unused === 1 ? 'was' : 'were'} not added.`);
   if (report.ignored) parts.push(`${report.ignored} file${report.ignored === 1 ? ' was' : 's were'} not audio and ${report.ignored === 1 ? 'was' : 'were'} ignored.`);
 
-  if (wasEmpty && tracks.length > 0) {
-    load(0);
+  if (startNew) {
+    load(firstNew);
     startPlayback();
-    parts.push(`Now playing: ${queue[0].title}.`);
+    parts.push(`Now playing: ${queue[firstNew].title}. Track ${firstNew + 1} of ${queue.length}.`);
+  } else if (tracks.length > 0) {
+    parts.push(`${tracks.length === 1 ? 'It\'s' : 'They\'re'} at the end of the queue, after what's playing now.`);
   }
   announce(parts.join(' '));
 }
