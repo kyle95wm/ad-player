@@ -57,7 +57,7 @@ Core requirements:
 |---|---|---|
 | `index.html` | ~108 | Page structure, landmarks, all static controls, including the night mode switch. Hidden `<input type=file>` elements for files and folders (`webkitdirectory`). |
 | `style.css` | ~372 | Colour tokens on `:root` with a dark-mode override, focus styles, responsive layout, the night mode switch, forced-colors and reduced-motion rules, tooltip styles. |
-| `app.js` | ~705 | Player: audio graph, night mode switch, queue state, rendering, controls, announcements, Media Session, volume. |
+| `app.js` | ~855 | Player: audio graph, night mode switch, resume positions, queue state, rendering, controls, announcements, Media Session, volume. |
 | `playlist.js` | ~155 | Sorting picked files into audio and playlists, M3U parsing, matching playlist entries to picked files. |
 | `dsp-processor.js` | ~250 | `AudioWorkletProcessor` named `dynamics-processor`, wrapping `FixedDSP`: a port of Plezy's FFmpeg compressor and limiter. LGPL-2.1-or-later (derived from FFmpeg). |
 | `tooltip.js` | ~115 | One shared tooltip element for any element with `data-tip`. |
@@ -214,6 +214,26 @@ includes the C integer division in the limiter's `pdelta`, the
   track; otherwise goes to the previous track.
 - Skipping always starts playback.
 
+## Resume positions (`app.js`, "Resume" section)
+
+- Saved per file in `localStorage` under `ad-player-positions` as
+  `{key: {t, at}}`. The key is a cyrb53 hash of `name + "\0" + size`, so file
+  names aren't stored readably and a copy with a new modified time still
+  matches. At most 200 entries; the oldest `at` is dropped first.
+- `savePosition()` runs every 5 s while playing (`timeupdate`), on `pause`,
+  `ended`, `pagehide`, a hidden `visibilitychange`, in `load()` for the track
+  being replaced, and in `stopAndUnload()`. It uses `loadedFile`, not
+  `queue[current]`, so it's right even after the queue was spliced. Under 30 s
+  or within 30 s of the end (or ended), the entry is deleted.
+- `load()` looks up the saved point minus 5 s and returns it (or null) so the
+  caller can add "Resuming at X. Press Previous track to start from the
+  beginning." to its announcement. `applyResume()` seeks on `loadedmetadata`,
+  before any sound. Nothing is saved until then (`resumeReady`), so the
+  pre-seek position 0 can't wipe the entry.
+- Starting over is Previous track (restart to 0); the next save deletes the
+  entry. **Forget saved positions** removes the key and announces how many.
+- The queue itself is deliberately not saved.
+
 ## Accessibility decisions (intentional, so don't "fix" these)
 
 - **Structure:**
@@ -318,6 +338,11 @@ includes the C integer division in the limiter's `pdelta`, the
     show; the choice is saved and restored after a reload.
   - With `audioWorklet` removed: the switch starts off, the warning shows, and
     turning it on announces that it isn't available.
+- **Resume positions** (23 November 2026, browser pane, synthesized WAVs):
+  saved at 62 s and resumed at 57 s after a reload, with a new modified time;
+  Previous then pause cleared it; reaching the end cleared it; the same name
+  with a different size didn't resume; Forget announced the count and cleared
+  storage.
 - **Not verified:**
   - real screen readers (NVDA, JAWS, VoiceOver, TalkBack);
   - Safari and Firefox, including their AudioWorklet output and multichannel

@@ -24,6 +24,7 @@ const els = {
   addFiles: $('btn-add-files'),
   addFolder: $('btn-add-folder'),
   clear: $('btn-clear'),
+  forget: $('btn-forget'),
   fileInput: $('file-input'),
   folderInput: $('folder-input'),
   queueList: $('queue-list'),
@@ -208,19 +209,131 @@ function spoken(sec) {
 }
 
 // ---------------------------------------------------------------------------
+// Resume: remember where each file was stopped, so opening it again picks up
+// from there. Saved in localStorage as { key: { t: seconds, at: Date.now() } }.
+// The key is a hash of the file's name and size, so names aren't stored in
+// readable form, and a copied file (new modified time) still matches.
+// ---------------------------------------------------------------------------
+
+const POSITIONS_KEY = 'ad-player-positions';
+const RESUME_MIN_SECONDS = 30;   // the first 30 s aren't remembered
+const RESUME_END_SECONDS = 30;   // the last 30 s count as finished
+const RESUME_REWIND_SECONDS = 5; // replay a little, to pick the story back up
+const RESUME_MAX_FILES = 200;    // the oldest entries are dropped beyond this
+const RESUME_SAVE_MS = 5000;     // how often to save during playback
+
+let loadedFile = null;   // the File currently in the audio element
+let resumeReady = false; // false until the loaded file's saved position is applied
+let pendingResume = null;
+let lastSaveAt = 0;
+
+function hashString(str) { // cyrb53
+  let h1 = 0xdeadbeef;
+  let h2 = 0x41c6ce57;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+}
+
+function fileKey(file) {
+  return hashString(`${file.name}\u0000${file.size}`);
+}
+
+function readPositions() {
+  try {
+    const map = JSON.parse(localStorage.getItem(POSITIONS_KEY) || '{}');
+    return map && typeof map === 'object' && !Array.isArray(map) ? map : {};
+  } catch {
+    return {};
+  }
+}
+
+function writePositions(map) {
+  const keys = Object.keys(map);
+  if (keys.length > RESUME_MAX_FILES) {
+    keys.sort((a, b) => (map[b].at || 0) - (map[a].at || 0));
+    for (const k of keys.slice(RESUME_MAX_FILES)) delete map[k];
+  }
+  try {
+    if (keys.length) localStorage.setItem(POSITIONS_KEY, JSON.stringify(map));
+    else localStorage.removeItem(POSITIONS_KEY);
+  } catch { /* storage unavailable or full */ }
+}
+
+// Saves the loaded file's position, or forgets it near the start or the end.
+function savePosition() {
+  if (!loadedFile || !resumeReady) return;
+  const dur = audio.duration;
+  if (!Number.isFinite(dur) || dur <= 0) return;
+  lastSaveAt = performance.now();
+  const t = audio.currentTime;
+  const key = fileKey(loadedFile);
+  const map = readPositions();
+  const finished = audio.ended || t > dur - RESUME_END_SECONDS;
+  if (t < RESUME_MIN_SECONDS || finished) {
+    if (!(key in map)) return;
+    delete map[key];
+  } else {
+    map[key] = { t: Math.floor(t), at: Date.now() };
+  }
+  writePositions(map);
+}
+
+// Where to start the file, a few seconds before where it was stopped, or null.
+function resumePoint(file) {
+  const entry = readPositions()[fileKey(file)];
+  if (!entry || !Number.isFinite(entry.t) || entry.t < RESUME_MIN_SECONDS) return null;
+  return Math.max(0, entry.t - RESUME_REWIND_SECONDS);
+}
+
+function resumeNote(at) {
+  return at === null ? ''
+    : ` Resuming at ${spoken(at)}. Press Previous track to start from the beginning.`;
+}
+
+function forgetPositions() {
+  const n = Object.keys(readPositions()).length;
+  if (n === 0) return announce('There are no saved positions to forget.');
+  try { localStorage.removeItem(POSITIONS_KEY); } catch { /* storage unavailable */ }
+  announce(`Forgot where you stopped in ${n} file${n === 1 ? '' : 's'}.`);
+}
+
+// ---------------------------------------------------------------------------
 // Playback
 // ---------------------------------------------------------------------------
 
+// Returns where the track will resume (seconds), or null if it starts at 0.
 function load(index) {
+  savePosition(); // the track being replaced
   if (currentUrl) URL.revokeObjectURL(currentUrl);
   current = index;
   const track = queue[index];
+  loadedFile = track.file;
+  resumeReady = false;
+  pendingResume = resumePoint(track.file);
   currentUrl = URL.createObjectURL(track.file);
   audio.src = currentUrl;
   lastSpokenSecond = -1;
   updateNowPlaying();
   updateMediaSession();
   renderQueue();
+  return pendingResume;
+}
+
+// Runs on loadedmetadata, before any sound, so playback starts at the saved point.
+function applyResume() {
+  if (resumeReady) return;
+  const at = pendingResume;
+  pendingResume = null;
+  if (at !== null && Number.isFinite(audio.duration) && at < audio.duration - 1) {
+    audio.currentTime = at;
+  }
+  resumeReady = true;
 }
 
 // onBlocked runs instead of the default message when the browser refuses to
@@ -239,9 +352,9 @@ function startPlayback(onBlocked) {
 
 function playIndex(index) {
   if (index < 0 || index >= queue.length) return;
-  load(index);
+  const resumeAt = load(index);
   startPlayback();
-  announce(`Now playing: ${queue[index].title}. Track ${index + 1} of ${queue.length}.`);
+  announce(`Now playing: ${queue[index].title}. Track ${index + 1} of ${queue.length}.${resumeNote(resumeAt)}`);
 }
 
 function togglePlay() {
@@ -290,6 +403,10 @@ function seekBy(delta) {
 }
 
 function stopAndUnload() {
+  savePosition();
+  loadedFile = null;
+  resumeReady = false;
+  pendingResume = null;
   audio.pause();
   audio.removeAttribute('src');
   audio.load();
@@ -338,7 +455,7 @@ async function addFiles(fileList) {
   if (report.ignored) parts.push(`${report.ignored} file${report.ignored === 1 ? ' was' : 's were'} not audio and ${report.ignored === 1 ? 'was' : 'were'} ignored.`);
 
   if (startNew) {
-    load(firstNew);
+    const resumeAt = load(firstNew);
     const title = queue[firstNew].title;
     const addedText = parts.slice();
     // Browsers only allow sound after a click or key press on the page. A file
@@ -347,9 +464,9 @@ async function addFiles(fileList) {
     // (or click) starts it.
     startPlayback(() => {
       els.play.focus();
-      announce([...addedText, `${title} is ready. Your browser only plays sound after a click or key press on this page, so press Play to start.`].join(' '));
+      announce([...addedText, `${title} is ready${resumeAt === null ? '' : ` to continue at ${spoken(resumeAt)}`}. Your browser only plays sound after a click or key press on this page, so press Play to start.`].join(' '));
     });
-    parts.push(`Now playing: ${queue[firstNew].title}. Track ${firstNew + 1} of ${queue.length}.`);
+    parts.push(`Now playing: ${title}. Track ${firstNew + 1} of ${queue.length}.${resumeNote(resumeAt)}`);
   } else if (tracks.length > 0) {
     parts.push(`${tracks.length === 1 ? 'It\'s' : 'They\'re'} at the end of the queue, after what's playing now.`);
   }
@@ -358,19 +475,20 @@ async function addFiles(fileList) {
 
 function removeTrack(index) {
   const [removed] = queue.splice(index, 1);
+  let resumeAt = null;
   if (index === current) {
     if (queue.length === 0) {
       stopAndUnload();
     } else {
       const wasPlaying = !audio.paused;
-      load(Math.min(index, queue.length - 1));
+      resumeAt = load(Math.min(index, queue.length - 1));
       if (wasPlaying) startPlayback();
     }
   } else if (index < current) {
     current--;
   }
   renderQueue();
-  announce(`Removed ${removed.title}. ${queue.length} track${queue.length === 1 ? '' : 's'} left.`);
+  announce(`Removed ${removed.title}. ${queue.length} track${queue.length === 1 ? '' : 's'} left.${resumeAt === null ? '' : ` ${queue[current].title} is next, at ${spoken(resumeAt)}.`}`);
 
   // Put focus somewhere sensible now that the button is gone.
   const target = queue[Math.min(index, queue.length - 1)];
@@ -573,15 +691,26 @@ audio.addEventListener('play', () => {
   if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
 });
 audio.addEventListener('pause', () => {
+  savePosition();
   updatePlayButton();
   renderQueueTag();
   if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
 });
-audio.addEventListener('loadedmetadata', () => { updateTime(); updatePositionState(); });
+audio.addEventListener('loadedmetadata', () => { applyResume(); updateTime(); updatePositionState(); });
 audio.addEventListener('durationchange', updateTime);
-audio.addEventListener('timeupdate', updateTime);
+audio.addEventListener('timeupdate', () => {
+  updateTime();
+  if (!audio.paused && performance.now() - lastSaveAt >= RESUME_SAVE_MS) savePosition();
+});
+// Save when the tab is closed, reloaded or hidden (phones may close it later
+// without warning).
+window.addEventListener('pagehide', savePosition);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') savePosition();
+});
 audio.addEventListener('seeked', updatePositionState);
 audio.addEventListener('ended', () => {
+  savePosition(); // forgets it: the track is finished
   if (current < queue.length - 1) {
     playIndex(current + 1);
   } else {
@@ -596,10 +725,11 @@ audio.addEventListener('error', () => {
   const why = code === 4 ? 'its format is not supported by this browser' : 'the file could not be read';
   if (current < queue.length - 1) {
     const nextIndex = current + 1;
-    announce(`Could not play ${bad.title} because ${why}. Skipping to ${queue[nextIndex].title}.`);
+    resumeReady = false; // don't save anything for the file that failed
     setTimeout(() => {
-      load(nextIndex);
+      const resumeAt = load(nextIndex);
       startPlayback();
+      announce(`Could not play ${bad.title} because ${why}. Skipping to ${queue[nextIndex].title}.${resumeNote(resumeAt)}`);
     }, 0);
   } else {
     announce(`Could not play ${bad.title} because ${why}.`);
@@ -667,6 +797,7 @@ els.volumeReset.addEventListener('click', () => {
 els.addFiles.addEventListener('click', () => { wakeAudio(); els.fileInput.click(); });
 els.addFolder.addEventListener('click', () => { wakeAudio(); els.folderInput.click(); });
 els.clear.addEventListener('click', clearQueue);
+els.forget.addEventListener('click', forgetPositions);
 for (const input of [els.fileInput, els.folderInput]) {
   input.addEventListener('change', async () => {
     const files = Array.from(input.files || []);

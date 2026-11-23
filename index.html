@@ -90,6 +90,7 @@
         <button type="button" id="btn-add-files" data-tip="Choose audio files, or an M3U playlist together with its audio files" class="action">Add files</button>
         <button type="button" id="btn-add-folder" data-tip="Choose a folder of audio files, with or without an M3U playlist" class="action">Add folder</button>
         <button type="button" id="btn-clear" data-tip="Stop playback and remove every track from the queue" class="action action-quiet">Clear queue</button>
+        <button type="button" id="btn-forget" data-tip="Forget where you stopped in every file, so they all start from the beginning" class="action action-quiet">Forget saved positions</button>
       </div>
       <input type="file" id="file-input" multiple hidden
              accept="audio/*,.mp3,.m4a,.m4b,.aac,.wav,.flac,.ogg,.oga,.opus,.webm,.weba,.aif,.aiff,.m3u,.m3u8">
@@ -98,6 +99,8 @@
       <p class="hint">
         To open an M3U playlist, select it together with the audio files it lists,
         or add the folder that contains them. You can also drag files onto this page.
+        The player remembers where you stopped in each file and picks up from
+        there when you open it again.
       </p>
 
       <p id="queue-empty" class="queue-empty">The queue is empty.</p>

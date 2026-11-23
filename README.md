@@ -32,6 +32,8 @@ Live site: https://kyle95wm.github.io/ad-player/
   Media Session API.
 - A **Night mode** switch, on by default. Your choice is remembered.
 - Volume setting remembered between visits.
+- Picks up where you left off. Open a file again and it resumes a few seconds
+  before where you stopped (see below).
 - Works offline. After your first visit, the player opens with no connection
   (see below).
 
@@ -186,6 +188,27 @@ name alone, so absolute paths like `C:\Music\Song.mp3` still match a picked
 `Song.mp3`. When a playlist is included, only the tracks it lists are queued, in
 its order. Entries that can't be found, web URLs, and extra audio files that
 aren't in the playlist are skipped, and the player announces how many.
+
+## Picking up where you left off
+
+The player remembers where you stopped in each file. When you open the same
+file again, by any route (Add files, Add folder, a playlist or a drop), it
+starts 5 seconds before that point, so you can pick the story back up, and
+says "Resuming at 42 minutes 5 seconds". To start from the beginning instead,
+press **Previous track**.
+
+- A position is saved every few seconds while playing, and whenever you pause,
+  change track or close the page.
+- The first 30 seconds and the last 30 seconds aren't remembered, so a file you
+  only sampled starts from the beginning, and a finished one isn't resumed at
+  the credits.
+- Files are recognised by name and size, so a copy of the same file still
+  resumes. The names aren't stored in readable form, only a code made from
+  them.
+- The 200 most recently played files are remembered. Positions are kept in this
+  browser only, and **Forget saved positions** clears them all.
+- The browser can't reopen files by itself, so you still choose the file again.
+  The queue itself isn't saved.
 
 ## Accessibility
 
