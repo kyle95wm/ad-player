@@ -25,6 +25,13 @@ const els = {
   addFolder: $('btn-add-folder'),
   clear: $('btn-clear'),
   forget: $('btn-forget'),
+  jump: $('btn-jump'),
+  jumpDialog: $('jump-dialog'),
+  jumpForm: $('jump-form'),
+  jumpTime: $('jump-time'),
+  jumpHelp: $('jump-help'),
+  jumpError: $('jump-error'),
+  jumpCancel: $('jump-cancel'),
   fileInput: $('file-input'),
   folderInput: $('folder-input'),
   queueList: $('queue-list'),
@@ -206,6 +213,32 @@ function spoken(sec) {
   if (m) out.push(part(m, 'minute'));
   if (s || out.length === 0) out.push(part(s, 'second'));
   return out.join(' ');
+}
+
+// Reads "1:05:30", "12:30", "90", "90.5", or "1h 5m 30s" (and spelled-out
+// units like "5 min" or "2 hours"). Returns seconds, or an error message.
+const NUM = '(\\d+(?:[.,]\\d+)?)';
+const UNIT_RE = new RegExp(`^(?:${NUM}\\s*h(?:ours?|rs?)?)?\\s*(?:${NUM}\\s*m(?:in(?:ute)?s?)?)?\\s*(?:${NUM}\\s*s(?:ec(?:ond)?s?)?)?$`, 'i');
+
+function parseTime(text) {
+  const str = text.trim().replace(/\s*:\s*/g, ':');
+  if (!str) return { error: 'Enter a time, such as 12:30.' };
+  const unreadable = { error: `"${text.trim()}" isn't a time this player can read. Try a format such as 1:05:30, 12:30 or 90.` };
+  const num = (v) => Number(String(v).replace(',', '.'));
+  if (/^\d+(?:[:.,]\d+)*$/.test(str) && str.includes(':')) {
+    const parts = str.split(':');
+    if (parts.length > 3 || parts.slice(0, -1).some((p) => !/^\d+$/.test(p))
+        || !/^\d+(?:[.,]\d+)?$/.test(parts[parts.length - 1])) return unreadable;
+    const values = parts.map(num);
+    if (values.slice(1).some((v) => v >= 60)) return { error: 'Minutes and seconds must be less than 60.' };
+    return { seconds: values.reduce((total, v) => total * 60 + v, 0) };
+  }
+  if (/^\d+(?:[.,]\d+)?$/.test(str)) return { seconds: num(str) };
+  const m = UNIT_RE.exec(str);
+  if (m && (m[1] || m[2] || m[3])) {
+    return { seconds: num(m[1] || 0) * 3600 + num(m[2] || 0) * 60 + num(m[3] || 0) };
+  }
+  return unreadable;
 }
 
 // ---------------------------------------------------------------------------
@@ -400,6 +433,51 @@ function seekBy(delta) {
   const t = Math.min(Math.max(audio.currentTime + delta, 0), audio.duration);
   audio.currentTime = t;
   announce(`${spoken(t)} of ${spoken(audio.duration)}`);
+}
+
+// ---------------------------------------------------------------------------
+// Jump to time dialog
+// ---------------------------------------------------------------------------
+
+function openJumpDialog() {
+  if (current === -1) {
+    return announce(queue.length === 0 ? 'The queue is empty. Add files first.' : 'No track is loaded. Press Play first.');
+  }
+  if (!Number.isFinite(audio.duration)) return announce('The track is still loading. Try again in a moment.');
+  showJumpError('');
+  els.jumpHelp.textContent = `For example 1:05:30, 12:30 or 90. This track is ${spoken(audio.duration)} long.`;
+  els.jumpTime.value = clock(audio.currentTime);
+  els.jumpDialog.showModal();
+  els.jumpTime.select();
+}
+
+let jumpErrorTimer = 0;
+function showJumpError(text) {
+  clearTimeout(jumpErrorTimer);
+  els.jumpError.textContent = '';
+  if (text) {
+    els.jumpTime.setAttribute('aria-invalid', 'true');
+    // Set after a pause so the alert is read again when the same error repeats.
+    jumpErrorTimer = setTimeout(() => { els.jumpError.textContent = text; }, 50);
+  } else {
+    els.jumpTime.removeAttribute('aria-invalid');
+  }
+}
+
+function submitJump() {
+  const fail = (text) => { showJumpError(text); els.jumpTime.focus(); els.jumpTime.select(); };
+  // The track may have changed, or been removed, while the dialog was open.
+  if (current === -1 || !Number.isFinite(audio.duration)) return fail('No track is ready to jump in. Press Cancel and try again.');
+  const result = parseTime(els.jumpTime.value);
+  if (result.error) return fail(result.error);
+  const dur = audio.duration;
+  if (result.seconds > dur) {
+    return fail(`That's past the end. This track is ${spoken(dur)} long (${clock(dur)}).`);
+  }
+  audio.currentTime = result.seconds;
+  els.jumpDialog.close();
+  updateTime();
+  announce(`Jumped to ${spoken(result.seconds)} of ${spoken(dur)}.${audio.paused ? ' Playback is paused.' : ''}`);
 }
 
 function stopAndUnload() {
@@ -796,6 +874,12 @@ els.volumeReset.addEventListener('click', () => {
 
 els.addFiles.addEventListener('click', () => { wakeAudio(); els.fileInput.click(); });
 els.addFolder.addEventListener('click', () => { wakeAudio(); els.folderInput.click(); });
+els.jump.addEventListener('click', openJumpDialog);
+els.jumpForm.addEventListener('submit', (e) => { e.preventDefault(); submitJump(); });
+els.jumpCancel.addEventListener('click', () => els.jumpDialog.close());
+els.jumpTime.addEventListener('input', () => {
+  if (els.jumpTime.hasAttribute('aria-invalid')) showJumpError('');
+});
 els.clear.addEventListener('click', clearQueue);
 els.forget.addEventListener('click', forgetPositions);
 for (const input of [els.fileInput, els.folderInput]) {

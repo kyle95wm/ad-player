@@ -55,12 +55,12 @@ Core requirements:
 
 | File | Lines | Role |
 |---|---|---|
-| `index.html` | ~108 | Page structure, landmarks, all static controls, including the night mode switch. Hidden `<input type=file>` elements for files and folders (`webkitdirectory`). |
-| `style.css` | ~372 | Colour tokens on `:root` with a dark-mode override, focus styles, responsive layout, the night mode switch, forced-colors and reduced-motion rules, tooltip styles. |
-| `app.js` | ~855 | Player: audio graph, night mode switch, resume positions, queue state, rendering, controls, announcements, Media Session, volume. |
+| `index.html` | ~132 | Page structure, landmarks, all static controls, including the night mode switch. Hidden `<input type=file>` elements for files and folders (`webkitdirectory`). |
+| `style.css` | ~416 | Colour tokens on `:root` with a dark-mode override, focus styles, responsive layout, the night mode switch, forced-colors and reduced-motion rules, tooltip styles. |
+| `app.js` | ~938 | Player: audio graph, night mode switch, resume positions, queue state, rendering, controls, announcements, Media Session, volume. |
 | `playlist.js` | ~155 | Sorting picked files into audio and playlists, M3U parsing, matching playlist entries to picked files. |
 | `dsp-processor.js` | ~250 | `AudioWorkletProcessor` named `dynamics-processor`, wrapping `FixedDSP`: a port of Plezy's FFmpeg compressor and limiter. LGPL-2.1-or-later (derived from FFmpeg). |
-| `tooltip.js` | ~115 | One shared tooltip element for any element with `data-tip`. |
+| `tooltip.js` | ~119 | One shared tooltip element for any element with `data-tip`. |
 | `sw.js` | ~80 | Service worker for offline use. Saves the page's own files on install, then serves network-first with a cache fallback. Registered at the end of `app.js`. |
 | `README.md` | | User-facing documentation. |
 | `tests/compare-dsp.mjs` | | Renders identical PCM through FFmpeg, the reference C++ and the worklet, and compares them. Writes `tests/dsp-comparison-results.json`. |
@@ -258,6 +258,27 @@ includes the C integer division in the limiter's `pdelta`, the
     that it's already at the default.
   - It doesn't use `<output>`, which some screen readers treat as a live region
     and would announce twice.
+- **Jump to time dialog** (`#jump-dialog`, opened by `#btn-jump` next to the
+  time text):
+  - A native `<dialog>` opened with `showModal()`, so the page behind is inert,
+    Escape closes it, and focus returns to the button on close.
+  - One text field (`#jump-time`), prefilled with the current position and
+    selected. `aria-describedby` points at the examples-and-length line and the
+    error line.
+  - `parseTime()` reads `h:mm:ss`, `m:ss`, plain seconds (decimals with `.` or
+    `,`), and unit forms such as `1h 5m 30s` or `5 min`. Minutes and seconds
+    after the first colon part must be under 60.
+  - Errors (unreadable, past the end) go in `#jump-error`, a `role=alert`
+    **inside** the dialog, because `#status` is inert while the modal is open.
+    The field gets `aria-invalid` and keeps focus. Typing clears the error.
+  - On success: seek, close, then `announce()` "Jumped to X of Y." (plus
+    "Playback is paused." if it is). Play state isn't changed.
+  - With no track, or before metadata has loaded, the button announces why
+    instead of opening.
+  - `tooltip.js` moves the tooltip element into an open `<dialog>` when the
+    target is inside one, because the modal's top layer would otherwise cover
+    it. The dialog must not get a `transform`, or the tooltip's
+    `position: fixed` would break.
 - **Night mode switch:**
   - A native `<input type=checkbox role=switch>` inside its `<label>`, so screen
     readers say "Night mode, switch, on". The state change is spoken natively,
@@ -338,6 +359,14 @@ includes the C integer division in the limiter's `pdelta`, the
     show; the choice is saved and restored after a reload.
   - With `audioWorklet` removed: the switch starts off, the warning shows, and
     turning it on announces that it isn't available.
+- **Jump to time** (23 November 2026, browser pane, synthesized 3:10 WAV):
+  the empty-queue message; the dialog opens with focus in the prefilled,
+  selected field; "4:00" (past the end), "9:99" and "2:5x" show errors with
+  focus kept in the field; "1:05" seeks, closes, returns focus to the button
+  and announces; Escape closes in one press even with a tooltip showing;
+  tooltips show inside the dialog; light and dark, and 375 px wide with no
+  horizontal scroll. `parseTime()` was checked in Node against valid and
+  invalid inputs.
 - **Resume positions** (23 November 2026, browser pane, synthesized WAVs):
   saved at 62 s and resumed at 57 s after a reload, with a new modified time;
   Previous then pause cleared it; reaching the end cleared it; the same name

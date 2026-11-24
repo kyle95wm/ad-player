@@ -27,7 +27,11 @@
         <label for="seek">Position</label>
         <input type="range" id="seek" min="0" max="0" step="1" value="0"
                aria-valuetext="No track loaded" aria-describedby="seek-help">
-        <p class="time" aria-hidden="true"><span id="time-current">0:00</span> / <span id="time-total">0:00</span></p>
+        <div class="seek-row">
+          <p class="time" aria-hidden="true"><span id="time-current">0:00</span> / <span id="time-total">0:00</span></p>
+          <button type="button" id="btn-jump" class="action action-quiet"
+                  data-tip="Type a time to jump straight to it, such as 1:05:30">Jump to time</button>
+        </div>
         <p id="seek-help" class="visually-hidden">Arrow keys move 5 seconds, Page Up and Page Down move 30 seconds.</p>
       </div>
 
@@ -107,5 +111,22 @@
       <ol id="queue-list" class="queue-list" aria-labelledby="queue-heading"></ol>
     </section>
   </main>
+
+  <dialog id="jump-dialog" class="dialog" aria-labelledby="jump-heading">
+    <form id="jump-form" novalidate>
+      <h2 id="jump-heading">Jump to time</h2>
+      <label for="jump-time">Time</label>
+      <input type="text" id="jump-time" class="text-input" autocomplete="off" spellcheck="false"
+             autocapitalize="off" aria-describedby="jump-help jump-error"
+             data-tip="Hours, minutes and seconds separated by colons, or just seconds">
+      <p id="jump-help" class="dialog-help">For example 1:05:30, 12:30 or 90.</p>
+      <!-- Inside the dialog, because the page's own status message is hidden while it's open. -->
+      <p id="jump-error" class="dialog-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button type="submit" class="action" data-tip="Go to this time in the current track">Jump</button>
+        <button type="button" id="jump-cancel" class="action action-quiet" data-tip="Close without changing the position">Cancel</button>
+      </div>
+    </form>
+  </dialog>
 </body>
 </html>

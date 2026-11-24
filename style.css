@@ -10,6 +10,7 @@
   --focus: #b8460b;
   --warn-bg: #fff4d6;
   --warn-border: #a86b00;
+  --error: #b3261e;
   --radius: 10px;
   --tip-bg: #1d2129;
   --tip-text: #ffffff;
@@ -29,6 +30,7 @@
     --focus: #ffb36b;
     --warn-bg: #3a2c08;
     --warn-border: #e0a526;
+    --error: #ff8a80;
     --tip-bg: #eef0f4;
     --tip-text: #111318;
     color-scheme: dark;
@@ -117,6 +119,15 @@ input[type="range"] {
   font-variant-numeric: tabular-nums;
   color: var(--muted);
 }
+
+.seek-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+}
+.seek-row .action { padding: .4rem .85rem; }
 
 .controls {
   display: flex;
@@ -239,6 +250,37 @@ button {
   border-radius: var(--radius);
 }
 
+/* Jump to time dialog. No transform here: the tooltip is moved inside an open
+   dialog and positions itself with position: fixed. */
+.dialog {
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgb(0 0 0 / .35);
+}
+.dialog::backdrop { background: rgb(0 0 0 / .5); }
+.dialog h2 { margin-bottom: 1rem; }
+.text-input {
+  width: 100%;
+  min-height: 44px;
+  padding: .4rem .75rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 2px solid var(--muted);
+  border-radius: 8px;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.text-input[aria-invalid="true"] { border-color: var(--error); }
+.dialog-help { margin: .35rem 0 0; color: var(--muted); font-size: .95rem; }
+.dialog-error { margin: .35rem 0 0; color: var(--error); font-weight: 600; }
+.dialog-error:empty { display: none; }
+.dialog-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+.dialog-actions .action { flex: 1 1 6rem; }
+
 .status {
   margin: 1rem 0 0;
   min-height: 1.5em;
@@ -326,6 +368,8 @@ body.is-dragging main { outline: 3px dashed var(--accent); outline-offset: 6px; 
 @media (forced-colors: active) {
   .ctrl, .action, .queue-tool { border: 1px solid ButtonText; }
   .queue-item[aria-current="true"] { outline: 2px solid Highlight; }
+  .dialog, .text-input { border: 2px solid CanvasText; }
+  .text-input[aria-invalid="true"] { border-style: dashed; }
   .switch-track, .switch-thumb { forced-color-adjust: none; }
   .switch-track { border-color: ButtonText; background: Canvas; }
   .switch-thumb { background: ButtonText; }

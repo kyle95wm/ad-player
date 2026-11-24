@@ -28,6 +28,8 @@ Live site: https://kyle95wm.github.io/ad-player/
 - M3U and M3U8 playlists, including `#EXTINF` titles (see below).
 - Large, labelled buttons for previous track, back 10 seconds, play/pause,
   forward 10 seconds and next track.
+- **Jump to time**: type a time such as 1:05:30, 12:30, 90 or 1h 5m and go
+  straight there.
 - Hardware media keys, headset buttons and lock-screen controls through the
   Media Session API.
 - A **Night mode** switch, on by default. Your choice is remembered.
@@ -222,6 +224,13 @@ press **Previous track**.
 - Position slider keys: arrows move 5 seconds, Page Up and Page Down move 30
   seconds.
 - Focus stays in a sensible place after you reorder or remove tracks.
+- **Jump to time** opens a dialog with one labelled text field, already filled
+  in with the current position and selected, so you can type over it. The
+  field's description gives example formats and the track's length. Press
+  Enter to jump or Escape to cancel; focus goes back to the Jump to time
+  button either way, and the new position is announced. If the time can't be
+  read or is past the end, an error is read out straight away and focus stays
+  in the field.
 - Every button has a tooltip. It appears on mouse hover and on keyboard focus,
   and Escape closes it. Tooltips are hidden from screen readers because the
   button labels already say the same thing.

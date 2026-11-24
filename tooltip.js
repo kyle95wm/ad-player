@@ -44,6 +44,10 @@ function show(el) {
   const text = el.dataset.tip;
   if (!text) return hide();
   target = el;
+  // A modal dialog sits in the top layer, above everything in <body>, so the
+  // tooltip has to live inside it to be seen.
+  const host = el.closest('dialog') || document.body;
+  if (tip.parentNode !== host) host.append(tip);
   tip.textContent = text;
   tip.hidden = false;
   place();
